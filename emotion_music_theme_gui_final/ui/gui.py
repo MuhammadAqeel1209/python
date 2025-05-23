@@ -4,10 +4,10 @@ from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
 import threading
 
-from detector.emotion_detector import detect_emotion_face
+from detector.emotion_detector import detect_emotion
 from detector.voice_emotion import detect_emotion as detect_emotion_voice
 from detector.text_emotion import detect_emotion as detect_emotion_text
-from player.music_player import play_music_for_emotion
+from player.music_player import play_music
 
 class EmotionApp:
     def __init__(self, root):
@@ -67,7 +67,7 @@ class EmotionApp:
         submit_btn.pack(pady=10)
 
     def run_face(self):
-        emotion = detect_emotion_face()
+        emotion = detect_emotion()
         self.display_result(emotion)
 
     def run_voice(self, file_path):
@@ -82,7 +82,7 @@ class EmotionApp:
 
     def display_result(self, emotion):
         self.status_label.config(text=f"Detected Emotion: {emotion.capitalize()}\nPlaying music...")
-        play_music_for_emotion(emotion)
+        play_music(emotion)
 
 if __name__ == "__main__":
     root = tk.Tk()
